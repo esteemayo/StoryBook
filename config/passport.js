@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const keys = require('./keys');
 const User = require('../models/User');
 
-module.exports = function(passport) {
+module.exports = function (passport) {
     passport.use(new GoogleStrategy({
         clientID: keys.GOOGLE_CLIENT_ID,
         clientSecret: keys.GOOGLE_CLIENT_SECRET,
@@ -22,7 +22,7 @@ module.exports = function(passport) {
         }
 
         // Check existing user
-        User.findOne({googleID: profile.id})
+        User.findOne({ googleID: profile.id })
             .then(user => {
                 // Return user
                 if (user) {
