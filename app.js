@@ -6,8 +6,6 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 const flash = require('connect-flash');
-const User = require('./models/User');
-const Story = require('./models/Story');
 
 
 // PASSPORT CONFIG
@@ -40,15 +38,15 @@ mongoose.connect('mongodb://localhost:27017/storybook', {
 
 app.engine('handlebars', exphbs({
     helpers: {
-        truncate: truncate,
-        stripTags: stripTags,
-        formatDate: formatDate,
-        select: select,
-        editIcon: editIcon
+        truncate,
+        stripTags,
+        formatDate,
+        select,
+        editIcon
     },
     defaultLayout: 'main'
 }));
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.set('view engine', 'handlebars');
 

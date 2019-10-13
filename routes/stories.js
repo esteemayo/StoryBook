@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
         .sort({ date: 'desc' })
         .then(stories => {
             res.render('stories/index', {
-                stories: stories
+                stories
             });
         });
 });
@@ -25,13 +25,13 @@ router.get('/show/:id', (req, res) => {
         .then(story => {
             if (story.status == 'public') {
                 res.render('stories/show', {
-                    story: story
+                    story
                 });
             } else {
                 if (req.user) {
                     if (req.user.id == story.user._id) {
                         res.render('stories/show', {
-                            story: story
+                            story
                         });
                     } else {
                         res.redirect('/stories');
@@ -49,7 +49,7 @@ router.get('/user/:userId', (req, res) => {
         .populate('user')
         .then(stories => {
             res.render('stories/index', {
-                stories: stories
+                stories
             });
         });
 });
@@ -60,7 +60,7 @@ router.get('/my', ensureAuthenticated, (req, res) => {
         .populate('user')
         .then(stories => {
             res.render('stories/index', {
-                stories: stories
+                stories
             });
         });
 });
@@ -80,7 +80,7 @@ router.get('/edit/:id', ensureAuthenticated, (req, res) => {
                 res.redirect('/stories');
             } else {
                 res.render('stories/edit', {
-                    story: story
+                    story
                 });
             }
         });

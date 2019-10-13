@@ -8,10 +8,10 @@ router.get('/', ensureGuest, (req, res) => {
 });
 
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
-    Story.find({user: req.user.id})
-        .then(stories =>{
+    Story.find({ user: req.user.id })
+        .then(stories => {
             res.render('index/dashboard', {
-                stories: stories
+                stories
             });
         });
 });
